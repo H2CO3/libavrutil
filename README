@@ -10,8 +10,7 @@ to all members of Atmel's microcontroller family, so any contribution
 regarding the unification of the API or adding/fixing features are highly
 appreciated.
 
-Documentation and sample code will be available shortly. In the meantime,
-check out the comments in the header files.
+Documentation and sample code can be found in the doc/examples and the doc/html directories.
 
 How to build and use the library:
 
