@@ -9,7 +9,7 @@
 
 #include "interrupt.h"
 
-static volatile avr_interrupt_handler __avr_intr_handlers[AVR_INTERRUPTS_NUM] = {
+static volatile avr_interrupt_handler __avr_intr_handlers[] = {
 #if defined(__AVR_ATmega1280__) || defined(__AVR_ATmega2560__)
 	NULL,
 	NULL,

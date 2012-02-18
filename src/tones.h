@@ -29,6 +29,9 @@ extern "C" {
  * three-lined (3), four-lined (4), five-lined (5) or six-lined (6).
  */
 
+#define PAUSE	    0
+#define END	 (-1)
+
 #define A_SUBC	   28
 #define A_S_SUBC   29
 

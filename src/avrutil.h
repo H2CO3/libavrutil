@@ -35,6 +35,7 @@
 #include <avrutil/interrupt.h>
 #include <avrutil/servo.h>
 #include <avrutil/sound.h>
+#include <avrutil/usart.h>
 
 #endif /* !__AVRUTIL_AVRUTIL_H__ */
 
