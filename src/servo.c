@@ -63,20 +63,14 @@ void avr_servo_init()
 
 void avr_servo_attach(uint8_t timer)
 {
-	if (timer != TIMER1A && timer != TIMER1B) /* Invalid timer */
-	{
+	if (timer == TIMER1A) {
+		TCCR1A |= _BV(COM1A1);
+	} else if (timer == TIMER1B) {
+		TCCR1A |= _BV(COM1B1);
+	} else {
+		/* Invalid timer */
 		return;
 	}
-	
-
-	if (timer == TIMER1A)
-	{
-		TCCR1A |= _BV(COM1A1);
-	}
-	else
-	{
-		TCCR1A |= _BV(COM1B1);
-	}	
 
 	/* Set servo position to center */
 	avr_servo_set_pos(timer, AVR_SERVO_CENTER);
@@ -85,49 +79,29 @@ void avr_servo_attach(uint8_t timer)
 
 void avr_servo_detach(uint8_t timer)
 {
-	if (timer != TIMER1A && timer != TIMER1B) /* Invalid timer */
-	{
-		return;
-	}
-
-	if (timer == TIMER1A)
-	{
+	if (timer == TIMER1A) {
 		TCCR1A &= ~(_BV(COM1A1) | _BV(COM1A0));
-	}
-	else
-	{
+	} else if (timer == TIMER1B) {
 		TCCR1A &= ~(_BV(COM1B1) | _BV(COM1B0));
 	}
 }
 
 void avr_servo_set_pos(uint8_t timer, uint16_t pos)
 {
-	if (timer != TIMER1A && timer != TIMER1B) /* invalid timer */
-	{
-		return;
-	}
-
-	/* Don't let the user overdrive the servo */
-	if (timer == TIMER1A)
-	{
+	if (timer == TIMER1A) {
+		/* Don't let the user overdrive the servo */
 		__avr_servo_position_a = limit(pos, AVR_SERVO_LEFT, AVR_SERVO_RIGHT);
-	}
-	else
-	{
-		__avr_servo_position_b = limit(pos, AVR_SERVO_LEFT, AVR_SERVO_RIGHT);
-	}
-	
-	if (timer == TIMER1A)
-	{
+		
 		/* Calculate timer ticks */
 		uint32_t ival_high = (__avr_servo_position_a * 1.0 * (__AVR_SERVO_MAX - __AVR_SERVO_MIN)) / (AVR_SERVO_RIGHT - AVR_SERVO_LEFT) + __AVR_SERVO_MIN;
 		uint16_t ticks_high = (ticks * ival_high) / __AVR_SERVO_TIVAL;
-	
+		
 		/* And write the result to the OCR1A register */
 		OCR1A = ticks_high - 1;
-	}
-	else
-	{
+	} else if (timer == TIMER1B) {
+		/* Don't let the user overdrive the servo */
+		__avr_servo_position_b = limit(pos, AVR_SERVO_LEFT, AVR_SERVO_RIGHT);
+		
 		/* Calculate timer ticks */
 		uint32_t ival_high = (__avr_servo_position_b * 1.0 * (__AVR_SERVO_MAX - __AVR_SERVO_MIN)) / (AVR_SERVO_RIGHT - AVR_SERVO_LEFT) + __AVR_SERVO_MIN;
 		uint16_t ticks_high = (ticks * ival_high) / __AVR_SERVO_TIVAL;
@@ -139,19 +113,14 @@ void avr_servo_set_pos(uint8_t timer, uint16_t pos)
 
 uint16_t avr_servo_get_pos(uint8_t timer)
 {
-	if (timer != TIMER1A && timer != TIMER1B) /* invalid timer */
-	{
-		return 0;
-	}
-
-	if (timer == TIMER1A)
-	{
+	if (timer == TIMER1A) {
 		return __avr_servo_position_a;
-	}
-	else
-	{
+	} else if (timer == TIMER1B) {
 		return __avr_servo_position_b;
 	}
+	
+	/* If reached, then the timer was invalid */
+	return 0;
 }
 
 #endif /* TCCR1A && TCCR1B */
