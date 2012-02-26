@@ -23,6 +23,10 @@ extern "C" {
  * To understand shift register logic, see Wikipedia for an explanation:
  * http://en.wikipedia.org/wiki/Shift_register#Serial-in.2C_serial-out_.28SISO.29
  *
+ * The shift register functions have a small built-in delay
+ * in order to be compatible with slower circuits without data loss.
+ * This limits the bandwidth to a few hundred kilobytes per second.
+ *
  * All of these functions expect a _pointer_ to I/O port registers,
  * e. g. &PORTB or &PIND.
  * They all use *clockport and clockpin as the clock signal input/output

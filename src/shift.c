@@ -7,6 +7,7 @@
  * http://creativecommons.org/licenses/by-sa/3.0/
  */
 
+#include <util/delay.h>
 #include "shift.h"
 
 uint8_t avr_shift_byte_in_master(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin)
@@ -17,9 +18,14 @@ uint8_t avr_shift_byte_in_master(uint8_t *dataport, uint8_t datapin, uint8_t *cl
 	{
 		/* Generate a clock signal */
 		avr_bit_set(*clockport, clockpin);
+
+		/* Wait a bit */
+		_delay_us(1);
+
 		/* Read the next data bit */
 		result |= (!!avr_bit_isset(*dataport, datapin)) << i;
 		avr_bit_clear(*clockport, clockpin);
+		_delay_us(1);
 	}
 	
 	return result;
@@ -34,7 +40,9 @@ void avr_shift_byte_out_master(uint8_t *dataport, uint8_t datapin, uint8_t *cloc
 		avr_bit_write(*dataport, datapin, byte & _BV(i));
 		/* Generate a clock signal */
 		avr_bit_set(*clockport, clockpin);
+		_delay_us(1);
 		avr_bit_clear(*clockport, clockpin);
+		_delay_us(1);
 	}
 }
 

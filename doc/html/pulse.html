@@ -29,7 +29,7 @@
 			<p><strong><tt>uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin)</tt></strong></p>
 			<p><strong><tt>uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin)</tt></strong></p>
 			<p><strong><tt>uint32_t avr_pulse_measure_inv_ms(uint8_t *port, uint8_t pin)</tt></strong></p>
-			<p>Microsecond precision measure functions may not be precise; see the notice in the <tt>pulse.h</tt> header file.</p>
+			<p>Microsecond precision measure functions may not be precise; see the notice in the <tt>pulse.h</tt> header file. The measure functions should be called a few microseconds earlier than the start of the actual pulse in order them to be able to do some internal setup.</p>
 		</div>
 	</body>
 </html>

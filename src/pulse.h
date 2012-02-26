@@ -45,6 +45,8 @@ void avr_pulse_generate_inv_ms(uint8_t *port, uint8_t pin, uint32_t ms);
  * avr_pulse_measure_us(&PINB, PIN0);
  * The `inv' functions behave according to an inverse logic. (See the
  * above explanation at the pulse generation functions.)
+ * The measurement functions need to be called a few microseconds
+ * earlier than the start of the actual pulse to be measured.
  */
 
 uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin);

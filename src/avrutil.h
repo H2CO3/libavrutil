@@ -33,7 +33,9 @@
 #include <avrutil/binary.h>
 #include <avrutil/delay.h>
 #include <avrutil/interrupt.h>
+#include <avrutil/pulse.h>
 #include <avrutil/servo.h>
+#include <avrutil/shift.h>
 #include <avrutil/sound.h>
 #include <avrutil/usart.h>
 

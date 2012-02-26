@@ -42,12 +42,14 @@ void avr_pulse_generate_inv_ms(uint8_t *port, uint8_t pin, uint32_t ms)
 
 uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin)
 {
+	uint32_t us = 0;
+
 	/* Wait for the pin to go low (to previous pulse to end, if any) */
 	loop_until_bit_is_clear(*port, pin);
+
 	/* Then wait for it to go high */
 	loop_until_bit_is_set(*port, pin);
-	
-	uint32_t us = 0;
+
 	/* Start counting */
 	while (avr_bit_isset(*port, pin))
 	{
@@ -60,12 +62,14 @@ uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin)
 
 uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin)
 {
+	uint32_t ms = 0;
+
 	/* Wait for the pin to go low (to previous pulse to end, if any) */
 	loop_until_bit_is_clear(*port, pin);
+
 	/* Then wait for it to go high */
 	loop_until_bit_is_set(*port, pin);
 	
-	uint32_t ms = 0;
 	/* Start counting */
 	while (avr_bit_isset(*port, pin))
 	{
@@ -78,12 +82,14 @@ uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin)
 
 uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin)
 {
+	uint32_t us = 0;
+
 	/* Wait for the pin to go high (to previous pulse to end, if any) */
 	loop_until_bit_is_set(*port, pin);
+
 	/* Then wait for it to go low */
 	loop_until_bit_is_clear(*port, pin);
 	
-	uint32_t us = 0;
 	/* Start counting */
 	while (avr_bit_isclear(*port, pin))
 	{
@@ -96,12 +102,14 @@ uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin)
 
 uint32_t avr_pulse_measure_inv_ms(uint8_t *port, uint8_t pin)
 {
+	uint32_t ms = 0;
+
 	/* Wait for the pin to go high (to previous pulse to end, if any) */
 	loop_until_bit_is_set(*port, pin);
+
 	/* Then wait for it to go low */
 	loop_until_bit_is_clear(*port, pin);
 	
-	uint32_t ms = 0;
 	/* Start counting */
 	while (avr_bit_isclear(*port, pin))
 	{
