@@ -50,7 +50,7 @@ void avr_servo_detach(uint8_t timer);
 
 /*
  * Set servo position: 0 = leftmost, 1023 = rightmost position,
- * 511 = center. The position value is bound-checked in order
+ * 511 = center. The position value is not bound-checked in order
  * not to overdrive the servos.
  */
 void avr_servo_set_pos(uint8_t timer, uint16_t pos);

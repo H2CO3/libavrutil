@@ -33,7 +33,7 @@ void avr_pwm_init();
 
 /*
  * Generate a PWM value in the range 0...1023 on a specified timer/pin.
- * The given duty cycle is bound checked against the valid range.
+ * The given duty cycle is not bound checked against the valid range.
  */
 void avr_analog_write(uint8_t timer, uint16_t val);
 

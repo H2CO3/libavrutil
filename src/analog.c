@@ -113,8 +113,7 @@ void avr_pwm_init()
 
 void avr_analog_write(uint8_t timer, uint16_t val)
 {
-
-	uint8_t value = limit(val + 2, 0, 1023) >> 2; /* +2 for rounding */
+	uint8_t value = (val + 2) >> 2; /* +2 for rounding */
 
 	switch (timer)
 	{

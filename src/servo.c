@@ -89,8 +89,7 @@ void avr_servo_detach(uint8_t timer)
 void avr_servo_set_pos(uint8_t timer, uint16_t pos)
 {
 	if (timer == TIMER1A) {
-		/* Don't let the user overdrive the servo */
-		__avr_servo_position_a = limit(pos, AVR_SERVO_LEFT, AVR_SERVO_RIGHT);
+		__avr_servo_position_a = pos;
 		
 		/* Calculate timer ticks */
 		uint32_t ival_high = (__avr_servo_position_a * 1.0 * (__AVR_SERVO_MAX - __AVR_SERVO_MIN)) / (AVR_SERVO_RIGHT - AVR_SERVO_LEFT) + __AVR_SERVO_MIN;
@@ -99,8 +98,7 @@ void avr_servo_set_pos(uint8_t timer, uint16_t pos)
 		/* And write the result to the OCR1A register */
 		OCR1A = ticks_high - 1;
 	} else if (timer == TIMER1B) {
-		/* Don't let the user overdrive the servo */
-		__avr_servo_position_b = limit(pos, AVR_SERVO_LEFT, AVR_SERVO_RIGHT);
+		__avr_servo_position_b = pos;
 		
 		/* Calculate timer ticks */
 		uint32_t ival_high = (__avr_servo_position_b * 1.0 * (__AVR_SERVO_MAX - __AVR_SERVO_MIN)) / (AVR_SERVO_RIGHT - AVR_SERVO_LEFT) + __AVR_SERVO_MIN;
