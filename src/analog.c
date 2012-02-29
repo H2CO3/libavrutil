@@ -13,7 +13,6 @@
 
 void avr_pwm_init()
 {
-	
 	/*
 	 * Prepare the internal timer(s) for producing PWM signal
 	 *
