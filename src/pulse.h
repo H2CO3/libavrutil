@@ -29,13 +29,13 @@ extern "C" {
  * e. g. avr_bit_set(PORTB, PIN0).
  */
 
-void avr_pulse_generate_us(uint8_t *port, uint8_t pin, uint16_t us);
+void avr_pulse_generate_us(volatile uint8_t *port, uint8_t pin, uint16_t us);
 
-void avr_pulse_generate_ms(uint8_t *port, uint8_t pin, uint32_t ms);
+void avr_pulse_generate_ms(volatile uint8_t *port, uint8_t pin, uint32_t ms);
 
-void avr_pulse_generate_inv_us(uint8_t *port, uint8_t pin, uint16_t us);
+void avr_pulse_generate_inv_us(volatile uint8_t *port, uint8_t pin, uint16_t us);
 
-void avr_pulse_generate_inv_ms(uint8_t *port, uint8_t pin, uint32_t ms);
+void avr_pulse_generate_inv_ms(volatile uint8_t *port, uint8_t pin, uint32_t ms);
 
 /*
  * These functions measure the length of a pulse in microseconds or
@@ -49,13 +49,13 @@ void avr_pulse_generate_inv_ms(uint8_t *port, uint8_t pin, uint32_t ms);
  * earlier than the start of the actual pulse to be measured.
  */
 
-uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin);
+uint32_t avr_pulse_measure_us(volatile uint8_t *port, uint8_t pin);
 
-uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin);
+uint32_t avr_pulse_measure_ms(volatile uint8_t *port, uint8_t pin);
 
-uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin);
+uint32_t avr_pulse_measure_inv_us(volatile uint8_t *port, uint8_t pin);
 
-uint32_t avr_pulse_measure_inv_ms(uint8_t *port, uint8_t pin);
+uint32_t avr_pulse_measure_inv_ms(volatile uint8_t *port, uint8_t pin);
 
 #ifdef __cplusplus
 }

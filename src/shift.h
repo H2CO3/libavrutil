@@ -45,22 +45,22 @@ extern "C" {
 /*
  * Reads a byte from the specified port/pin, master mode
  */
-uint8_t avr_shift_byte_in_master(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin);
+uint8_t avr_shift_byte_in_master(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin);
 
 /*
  * Writes a byte to the specified port/pin, master mode
  */
-void avr_shift_byte_out_master(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin, uint8_t byte);
+void avr_shift_byte_out_master(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin, uint8_t byte);
 
 /*
  * Reads a byte from the specified port/pin, slave mode
  */
-uint8_t avr_shift_byte_in_slave(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin);
+uint8_t avr_shift_byte_in_slave(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin);
 
 /*
  * Writes a byte to the specified port/pin, slave mode
  */
-void avr_shift_byte_out_slave(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin, uint8_t byte);
+void avr_shift_byte_out_slave(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin, uint8_t byte);
 
 #ifdef __cplusplus
 }

@@ -10,7 +10,7 @@
 #include <util/delay.h>
 #include "shift.h"
 
-uint8_t avr_shift_byte_in_master(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin)
+uint8_t avr_shift_byte_in_master(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin)
 {
 	uint8_t result = B00000000;
 	uint8_t i;
@@ -31,7 +31,7 @@ uint8_t avr_shift_byte_in_master(uint8_t *dataport, uint8_t datapin, uint8_t *cl
 	return result;
 }
 
-void avr_shift_byte_out_master(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin, uint8_t byte)
+void avr_shift_byte_out_master(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin, uint8_t byte)
 {
 	uint8_t i;
 	for (i = 0; i < 8; i++)
@@ -46,7 +46,7 @@ void avr_shift_byte_out_master(uint8_t *dataport, uint8_t datapin, uint8_t *cloc
 	}
 }
 
-uint8_t avr_shift_byte_in_slave(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin)
+uint8_t avr_shift_byte_in_slave(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin)
 {
 	uint8_t result = B00000000;
 	uint8_t i;
@@ -63,7 +63,7 @@ uint8_t avr_shift_byte_in_slave(uint8_t *dataport, uint8_t datapin, uint8_t *clo
 	return result;
 }
 
-void avr_shift_byte_out_slave(uint8_t *dataport, uint8_t datapin, uint8_t *clockport, uint8_t clockpin, uint8_t byte)
+void avr_shift_byte_out_slave(volatile uint8_t *dataport, uint8_t datapin, volatile uint8_t *clockport, uint8_t clockpin, uint8_t byte)
 {
 	uint8_t i;
 	for (i = 0; i < 8; i++)

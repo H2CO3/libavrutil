@@ -12,35 +12,35 @@
 #include "pulse.h"
 
 
-void avr_pulse_generate_us(uint8_t *port, uint8_t pin, uint16_t us)
+void avr_pulse_generate_us(volatile uint8_t *port, uint8_t pin, uint16_t us)
 {
 	avr_bit_set(*port, pin);
 	avr_delay_us(us);
 	avr_bit_clear(*port, pin);
 }
 
-void avr_pulse_generate_ms(uint8_t *port, uint8_t pin, uint32_t ms)
+void avr_pulse_generate_ms(volatile uint8_t *port, uint8_t pin, uint32_t ms)
 {
 	avr_bit_set(*port, pin);
 	avr_delay_ms(ms);
 	avr_bit_clear(*port, pin);
 }
 
-void avr_pulse_generate_inv_us(uint8_t *port, uint8_t pin, uint16_t us)
+void avr_pulse_generate_inv_us(volatile uint8_t *port, uint8_t pin, uint16_t us)
 {
 	avr_bit_clear(*port, pin);
 	avr_delay_us(us);
 	avr_bit_set(*port, pin);
 }
 
-void avr_pulse_generate_inv_ms(uint8_t *port, uint8_t pin, uint32_t ms)
+void avr_pulse_generate_inv_ms(volatile uint8_t *port, uint8_t pin, uint32_t ms)
 {
 	avr_bit_clear(*port, pin);
 	avr_delay_ms(ms);
 	avr_bit_set(*port, pin);
 }
 
-uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin)
+uint32_t avr_pulse_measure_us(volatile uint8_t *port, uint8_t pin)
 {
 	uint32_t us = 0;
 
@@ -60,7 +60,7 @@ uint32_t avr_pulse_measure_us(uint8_t *port, uint8_t pin)
 	return us;
 }
 
-uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin)
+uint32_t avr_pulse_measure_ms(volatile uint8_t *port, uint8_t pin)
 {
 	uint32_t ms = 0;
 
@@ -80,7 +80,7 @@ uint32_t avr_pulse_measure_ms(uint8_t *port, uint8_t pin)
 	return ms;
 }
 
-uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin)
+uint32_t avr_pulse_measure_inv_us(volatile uint8_t *port, uint8_t pin)
 {
 	uint32_t us = 0;
 
@@ -100,7 +100,7 @@ uint32_t avr_pulse_measure_inv_us(uint8_t *port, uint8_t pin)
 	return us;
 }
 
-uint32_t avr_pulse_measure_inv_ms(uint8_t *port, uint8_t pin)
+uint32_t avr_pulse_measure_inv_ms(volatile uint8_t *port, uint8_t pin)
 {
 	uint32_t ms = 0;
 
