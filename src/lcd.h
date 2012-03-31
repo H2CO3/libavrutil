@@ -12,12 +12,12 @@
  * Hitachi HD44780 LCD display controller. The library uses a 4-bit mode,
  * that is, the LCD needs to be connected to the AVR using 6 lines
  * (compared to 10 wires when using 8-bit mode):
- * port C, pin 0: LCD data bit 4
- * port C, pin 1: LCD data bit 5
- * port C, pin 2: LCD data bit 6
- * port C, pin 3: LCD data bit 7
- * port C, pin 4: Register Select (RS)
- * port C, pin 5: Clock/Enable (E)
+ * port B, pin 0: LCD data bit 4
+ * port B, pin 1: LCD data bit 5
+ * port B, pin 2: LCD data bit 6
+ * port B, pin 3: LCD data bit 7
+ * port B, pin 4: Register Select (RS)
+ * port B, pin 5: Clock/Enable (E)
  * The Read/~Write pin of the LCD should be grounded.
  */
 

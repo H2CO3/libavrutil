@@ -9,16 +9,16 @@
 
 #include "lcd.h"
 
-#define __AVR_LCD_DDR  DDRC
-#define __AVR_LCD_PORT PORTC
+#define __AVR_LCD_DDR  DDRB
+#define __AVR_LCD_PORT PORTB
 
-#define __AVR_LCD_DB4  PC0
-#define __AVR_LCD_DB5  PC1
-#define __AVR_LCD_DB6  PC2
-#define __AVR_LCD_DB7  PC3
+#define __AVR_LCD_DB4  PB0
+#define __AVR_LCD_DB5  PB1
+#define __AVR_LCD_DB6  PB2
+#define __AVR_LCD_DB7  PB3
 
-#define __AVR_LCD_RS   PC4
-#define __AVR_LCD_CLK  PC5
+#define __AVR_LCD_RS   PB4
+#define __AVR_LCD_CLK  PB5
 
 #define LOW_NIBBLE(b)  (((uint8_t)(b) >> 0) & B00001111)
 #define HIGH_NIBBLE(b) (((uint8_t)(b) >> 4) & B00001111)
