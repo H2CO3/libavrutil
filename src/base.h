@@ -31,6 +31,7 @@ extern "C" {
 
 #define interpolate(x, xmin, xmax, ymin, ymax) (((x) - (xmin)) / ((xmax) - (xmin)) * ((ymax) - (ymin)) + (ymin))
 #define limit(val, min, max) ((val) < (min) ? (min) : (val) > (max) ? (max) : (val))
+#define nop() __volatile__ __asm__("nop")
 
 /*
  * Pin mode and pin state definitions
