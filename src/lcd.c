@@ -25,25 +25,13 @@
 
 static uint8_t __avr_lcd_cursor_pos = 0;
 
-uint8_t __avr_lcd_transcribe_byte(uint8_t byte);
 void __avr_lcd_clock();
 void __avr_lcd_send_command(uint8_t byte);
-
-uint8_t __avr_lcd_transcribe_byte(uint8_t byte)
-{
-	uint8_t b = 0;
-	b |= ((byte >> 0) & B00000001) << __AVR_LCD_DB4;
-	b |= ((byte >> 1) & B00000001) << __AVR_LCD_DB5;
-	b |= ((byte >> 2) & B00000001) << __AVR_LCD_DB6;
-	b |= ((byte >> 3) & B00000001) << __AVR_LCD_DB7;
-
-	return b;
-}
 
 void __avr_lcd_clock()
 {
 	__AVR_LCD_PORT |= _BV(__AVR_LCD_CLK);
-	_delay_us(10); /* wait more than 500 ns */
+	_delay_us(2); /* wait more than 500 ns */
 	__AVR_LCD_PORT &= ~_BV(__AVR_LCD_CLK);
 }
 
@@ -56,13 +44,13 @@ void __avr_lcd_send_command(uint8_t byte)
 	__AVR_LCD_PORT = 0;
 	__AVR_LCD_PORT |= high_nibble;
 	__avr_lcd_clock();
-	_delay_ms(10);
+	_delay_ms(2);
 	
 	/* Send low nibble second */
 	__AVR_LCD_PORT = 0;
 	__AVR_LCD_PORT |= low_nibble;
 	__avr_lcd_clock();
-	_delay_ms(10);
+	_delay_ms(2);
 }
 
 void avr_lcd_set_cursor_pos(uint8_t addr)
@@ -121,17 +109,19 @@ void avr_lcd_home()
 
 void avr_lcd_putc(char c)
 {
+	/* Send high nibble first */
 	__AVR_LCD_PORT = 0;
-	__AVR_LCD_PORT |= __avr_lcd_transcribe_byte(HIGH_NIBBLE(c));
+	__AVR_LCD_PORT |= HIGH_NIBBLE(c);
 	__AVR_LCD_PORT |= _BV(__AVR_LCD_RS);
 	__avr_lcd_clock();
-	_delay_ms(5);
-
+	_delay_us(50);
+	
+	/* Send low nibble second */
 	__AVR_LCD_PORT = 0;
-	__AVR_LCD_PORT |= __avr_lcd_transcribe_byte(LOW_NIBBLE(c));
+	__AVR_LCD_PORT |= LOW_NIBBLE(c);
 	__AVR_LCD_PORT |= _BV(__AVR_LCD_RS);
 	__avr_lcd_clock();
-	_delay_ms(5);
+	_delay_us(50);
 }
 
 void avr_lcd_puts(const char *s)
