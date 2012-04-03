@@ -20,6 +20,7 @@ extern "C" {
 #endif /* __cplusplus */
 
 #include <avr/io.h>
+#include <avr/wdt.h>
 #include "binary.h"
 
 #define __avr_inline __attribute__((always_inline)) static inline
@@ -32,6 +33,7 @@ extern "C" {
 #define interpolate(x, xmin, xmax, ymin, ymax) (((x) - (xmin)) / ((xmax) - (xmin)) * ((ymax) - (ymin)) + (ymin))
 #define limit(val, min, max) ((val) < (min) ? (min) : (val) > (max) ? (max) : (val))
 #define nop() __asm__ __volatile__("nop")
+#define avr_soft_reset() ((void (*)())0)()
 
 /*
  * Pin mode and pin state definitions
