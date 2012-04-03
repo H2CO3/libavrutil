@@ -14,13 +14,17 @@ PROJECT="$1";
 DATE=`date '+%d/%m/%Y.'`;
 AUTHOR="";
 LICENSE="";
+BASEDIR=`dirname $0`;
+TARGETDIR=`pwd`;
+
+pushd $BASEDIR >/dev/null;
 
 if [ ! "x$2" == "x" ]; then
 	AUTHOR="by $2";
 fi
 
 if [ ! "x$3" == "x" ]; then
-	LICENSE="License: $3";
+	LICENSE="Licensed under $3";
 fi
 
 mkdir -p "$PROJECT";
@@ -34,6 +38,11 @@ for filename in $FILES; do
 		mv "$filename.tmp" "$filename";
 	fi;
 done;
+
+popd >/dev/null;
+
+cp -r $PROJECT $TARGETDIR/;
+rm -rf $PROJECT;
 
 popd >/dev/null;
 

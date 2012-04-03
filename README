@@ -15,7 +15,7 @@ Documentation and sample code can be found in the doc/examples and the doc/html 
 How to build and use the library:
 
 1.) You'll need the minimal AVR toolchain: apt-get install gcc-avr binutils-avr avr-libc avrdude
-2.) cd libavrutil && ./configure <MCU type>, <clock frequency>
+2.) cd libavrutil && ./configure <MCU type> <clock frequency> <upload-baudrate>
 	where MCU type is the part name of your AVR, for example, atmega328p,
 	and clock frequency is the frequency of the system clock, in Hertz,
 	for example 3690000ULL	(preferrably suffixed by 'ULL' to make it explicitly
