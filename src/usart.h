@@ -119,7 +119,14 @@ void avr_usart_write(uint8_t channel, const uint8_t *buf, size_t length);
  * final (already formatted) string.
  */
 __attribute__((format(printf, 2, 3)))
-size_t avr_usart_printf(uint8_t channel, const char *str, ...);
+size_t avr_usart_printf(uint8_t channel, const char *fmt, ...);
+
+/*
+ * Like avr_usart_printf(), but this variation accepts a va_list as arguments
+ * but this function accepts a
+ */
+size_t avr_usart_vprintf(uint8_t channel, const char *fmt, va_list args);
+
 
 /*
  * Enables RX completed and/or TX completed interrupts on `channel'.

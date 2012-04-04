@@ -212,13 +212,19 @@ void avr_usart_write(uint8_t channel, const uint8_t *buf, size_t length)
 	}
 }
 
-size_t avr_usart_printf(uint8_t channel, const char *str, ...)
+size_t avr_usart_printf(uint8_t channel, const char *fmt, ...)
+{
+	va_list args;
+	va_start(args, fmt);
+	size_t len = avr_usart_vprintf(channel, fmt, args);
+	va_end(args);
+	return len;
+}
+
+size_t avr_usart_vprintf(uint8_t channel, const char *fmt, va_list args)
 {
 	char buf[256];
-	va_list args;
-	va_start(args, str);
-	size_t len = vsnprintf(buf, 256, str, args);
-	va_end(args);
+	size_t len = vsnprintf(buf, sizeof(buf), fmt, args);
 	
 	char *ptr = buf;
 	while (*ptr)
