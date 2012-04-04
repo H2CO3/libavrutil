@@ -21,6 +21,7 @@ extern "C" {
 
 #include <stdlib.h>
 #include <stdint.h>
+#include <stdarg.h>
 #include <string.h>
 #include <avr/io.h>
 #include "base.h"
