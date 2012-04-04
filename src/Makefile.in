@@ -15,13 +15,13 @@ RM = rm
 CP = cp
 MKDIR = mkdir
 
-CFLAGS = -std=gnu99 -Os -Wall -fno-exceptions -ffunction-sections -fdata-sections -mmcu=$(CPU_TYPE) -DF_CPU=$(CPU_FREQ) -c
+CFLAGS = -c -std=gnu99 -Os -Wall -ffunction-sections -fdata-sections -mmcu=$(CPU_TYPE) -DF_CPU=$(CPU_FREQ)
 ARFLAGS = rcsv
 RMFLAGS = -rf
 CPFLAGS = -r
 MKDIRFLAGS = -p
 
-OBJECTS = $(patsubst %.c,%.o,$(wildcard *.c))
+OBJECTS = $(patsubst %.c, %.o, $(wildcard *.c))
 HEADERS = $(wildcard *.h)
 
 $(TARGET): $(OBJECTS)
@@ -38,5 +38,5 @@ clean:
 	$(RM) $(RMFLAGS) $(TARGET) $(OBJECTS) *~
 
 %.o: %.c
-	$(CC) $(CFLAGS) $^
+	$(CC) $(CFLAGS) -o $@ $^
 
