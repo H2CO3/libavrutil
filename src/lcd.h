@@ -72,12 +72,6 @@ void avr_lcd_home();
 void avr_lcd_set_cursor_pos(uint8_t addr);
 
 /* 
- * Returns the current position (line + char, indexed from 0)
- * of the LCD cursor.
- */
-uint8_t avr_lcd_get_cursor_pos();
-
-/* 
  * Display a character at the current cursor position
  * and advance the cursor by one.
  */

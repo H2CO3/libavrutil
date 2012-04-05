@@ -23,8 +23,6 @@
 #define LOW_NIBBLE(b)  (((uint8_t)(b) >> 0) & B00001111)
 #define HIGH_NIBBLE(b) (((uint8_t)(b) >> 4) & B00001111)
 
-static uint8_t __avr_lcd_cursor_pos = 0;
-
 void __avr_lcd_clock();
 void __avr_lcd_send_command(uint8_t byte);
 
@@ -55,13 +53,7 @@ void __avr_lcd_send_command(uint8_t byte)
 
 void avr_lcd_set_cursor_pos(uint8_t addr)
 {
-	__avr_lcd_cursor_pos = addr;
-	__avr_lcd_send_command(_BV(7) | __avr_lcd_cursor_pos);
-}
-
-uint8_t avr_lcd_get_cursor_pos()
-{
-	return __avr_lcd_cursor_pos;
+	__avr_lcd_send_command(_BV(7) | addr);
 }
 
 void avr_lcd_init()

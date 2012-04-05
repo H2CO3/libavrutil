@@ -35,7 +35,6 @@
 			<p><strong><tt>void avr_cld_clear()</tt></strong>:  clears the screen and positions the cursor at row 0 column 0.</p>
 			<p><strong><tt>void avr_lcd_home()</tt></strong>:  positions the cursor at row 0 column 0 without clearing the screen.</p>
 			<p><strong><tt>void avr_lcd_set_cursor_pos(uint8_t addr)</tt></strong>:  Sets the cursor position using the <tt>AVR_LCD_LINEn</tt> (n = 0 or 1) macros. Add the column number (indexed from 0) to shift the cursor to the right.</p>
-			<p><strong><tt>uint8_t avr_lcd_get_cursor_pos()</tt></strong>:  returns the cursor position in the same format as <tt>vr_lcd_get_cursor_pos()</tt>.</p>
 			<p><strong><tt>void avr_lcd_putc(char c)</tt></strong>:  writes one character to the display at the current cursor position and advances the cursor by one.</p>
 			<p><strong><tt>void avr_lcd_puts(const char *s)</tt></strong>:  writes a NULL-terminated C string at the current cursor position using <tt>avr_lcd_putc</tt></p>
 		</div>
